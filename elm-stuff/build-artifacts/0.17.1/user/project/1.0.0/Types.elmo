@@ -1,0 +1,7 @@
+var _user$project$Types$News = function (a) {
+	return {headline: a};
+};
+var _user$project$Types$Model = function (a) {
+	return {news: a};
+};
+var _user$project$Types$Nope = {ctor: 'Nope'};
