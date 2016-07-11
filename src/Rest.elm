@@ -14,7 +14,7 @@ decodeNewsItem =
 
 decodeNews : Decoder (List News)
 decodeNews =
-   "hits" := (list decodeNewsItem)
+    "hits" := (list decodeNewsItem)
 
 
 endpoint : String
@@ -25,5 +25,5 @@ endpoint =
 getNews : Cmd Msg
 getNews =
     Http.get decodeNews endpoint
-        |> Task.perform Result.Err Result.Ok
+        |> Task.perform Failed Succeed
         |> Cmd.map GetNewsResponse

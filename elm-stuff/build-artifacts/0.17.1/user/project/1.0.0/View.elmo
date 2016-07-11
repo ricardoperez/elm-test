@@ -11,7 +11,8 @@ var _user$project$View$newsItem = function (news) {
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text(news.headline)
+						_elm_lang$html$Html$text(
+						A2(_elm_lang$core$Debug$log, 'Showing', news.headline))
 					]))
 			]));
 };
@@ -25,15 +26,41 @@ var _user$project$View$root = function (model) {
 				A2(
 				_elm_lang$html$Html$h1,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[
+						_elm_lang$html$Html_Attributes$style(
+						_elm_lang$core$Native_List.fromArray(
+							[
+								{ctor: '_Tuple2', _0: 'font-style', _1: 'italic'}
+							]))
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html$text('News!')
 					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				A2(_elm_lang$core$List$map, _user$project$View$newsItem, model.news))
+				function () {
+				var _p0 = model.news;
+				switch (_p0.ctor) {
+					case 'Loading':
+						return _elm_lang$html$Html$text('Loading');
+					case 'Failed':
+						return A2(
+							_elm_lang$html$Html$div,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$class('alert alert-danger')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text(
+									_elm_lang$core$Basics$toString(_p0._0))
+								]));
+					default:
+						return A2(
+							_elm_lang$html$Html$ul,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							A2(_elm_lang$core$List$map, _user$project$View$newsItem, _p0._0));
+				}
+			}()
 			]));
 };
